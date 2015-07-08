@@ -14,5 +14,5 @@ momentum: 0.9
 #weight_decay: 0.0002
 weight_decay: 0.00004
 snapshot: 40000
-snapshot_prefix: "snapshots/inception_bn_quick"
+snapshot_prefix: "snapshots/inception_bn_quick2"
 solver_mode: GPU
