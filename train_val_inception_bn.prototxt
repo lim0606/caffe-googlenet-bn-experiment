@@ -7,10 +7,10 @@ layers {
   name: "data"
   type: DATA
   data_param {
-    source: "/media/data0/image/ilsvrc12/ilsvrc12_train_lmdb"
-    batch_size: 5
+    source: "/media/data1/image/ilsvrc12/ilsvrc12_train_lmdb"
+    batch_size: 32
     backend: LMDB
-#    shuffle: true
+    shuffle: true
   }
   include {
     phase: TRAIN
@@ -60,7 +60,7 @@ layers {
   type: DATA
   data_param {
     source: "/media/data1/image/ilsvrc12/ilsvrc12_val_lmdb"
-    batch_size: 5
+    batch_size: 32
     backend: LMDB
   }
   include {
@@ -1485,152 +1485,152 @@ layers {
   name: "inception_4a/output"
   type: CONCAT
 }
-#layers {
-#  bottom: "inception_4a/output"
-#  top: "loss1/ave_pool"
-#  name: "loss1/ave_pool"
-#  type: POOLING
-#  pooling_param {
-#    pool: AVE
-#    kernel_size: 5
-#    stride: 3
-#  }
-#}
-#layers {
-#  bottom: "loss1/ave_pool"
-#  top: "loss1/conv"
-#  name: "loss1/conv"
-#  type: CONVOLUTION
-#  blobs_lr: 1
-#  weight_decay: 1
-#  convolution_param {
-#    num_output: 128
-#    kernel_size: 1
-#    weight_filler {
-#      type: "xavier"
-#    }
-#    bias_term: false
-#  }
-#}
-### BN
-#layers {
-#  bottom: "loss1/conv"
-#  name: "loss1/conv/bn"
-#  top: "loss1/conv/bn"
-#  type: BN
-#  blobs_lr: 1
-#  blobs_lr: 1
-#  weight_decay: 0
-#  weight_decay: 0
-#  bn_param {
-#    scale_filler {
-#      type: "constant"
-#      value: 1
-#    }
-#    shift_filler {
-#      type: "constant"
-#      value: 0
-#    }
-#  }
-#}
-#layers {
-#  bottom: "loss1/conv/bn"
-#  top: "loss1/conv/bn"
-#  name: "loss1/relu_conv"
-#  type: RELU
-#}
-#layers {
-#  bottom: "loss1/conv/bn"
-#  top: "loss1/fc"
-#  name: "loss1/fc"
-#  type: INNER_PRODUCT
-#  blobs_lr: 1
-#  weight_decay: 1
-#  inner_product_param {
-#    num_output: 1024
-#    weight_filler {
-#      type: "xavier"
-#    }
-#    bias_term: false
-#  }
-#}
-### BN
-#layers {
-#  bottom: "loss1/fc"
-#  name: "loss1/fc/bn"
-#  top: "loss1/fc/bn"
-#  type: BN
-#  blobs_lr: 1
-#  blobs_lr: 1
-#  weight_decay: 0
-#  weight_decay: 0
-#  bn_param {
-#    scale_filler {
-#      type: "constant"
-#      value: 1
-#    }
-#    shift_filler {
-#      type: "constant"
-#      value: 0
-#    }
-#  }
-#}
-#layers {
-#  bottom: "loss1/fc/bn"
-#  top: "loss1/fc/bn"
-#  name: "loss1/relu_fc"
-#  type: RELU
-#}
-#layers {
-#  bottom: "loss1/fc/bn"
-#  top: "loss1/classifier"
-#  name: "loss1/classifier"
-#  type: INNER_PRODUCT
-#  blobs_lr: 1
-#  blobs_lr: 2
-#  weight_decay: 1
-#  weight_decay: 0
-#  inner_product_param {
-#    num_output: 1000
-#    weight_filler {
-#      type: "xavier"
-#    }
-#    bias_filler {
-#      type: "constant"
-#    }
-#  }
-#}
-#layers {
-#  bottom: "loss1/classifier"
-#  bottom: "label"
-#  top: "loss1/loss1"
-#  name: "loss1/loss"
-#  type: SOFTMAX_LOSS
-#  loss_weight: 0.3
-#}
-#layers {
-#  bottom: "loss1/classifier"
-#  bottom: "label"
-#  top: "loss1/top-1"
-#  name: "loss1/top-1"
-#  type: ACCURACY
-#  include {
-#    phase: TEST
-#  }
-#}
-#layers {
-#  bottom: "loss1/classifier"
-#  bottom: "label"
-#  top: "loss1/top-5"
-#  name: "loss1/top-5"
-#  type: ACCURACY
-#  accuracy_param {
-#    top_k: 5
-#  }
-#  include {
-#    phase: TEST
-#  }
-#}
+layers {
+  bottom: "inception_4a/output"
+  top: "loss1/ave_pool"
+  name: "loss1/ave_pool"
+  type: POOLING
+  pooling_param {
+    pool: AVE
+    kernel_size: 5
+    stride: 3
+  }
+}
+layers {
+  bottom: "loss1/ave_pool"
+  top: "loss1/conv"
+  name: "loss1/conv"
+  type: CONVOLUTION
+  blobs_lr: 1
+  weight_decay: 1
+  convolution_param {
+    num_output: 128
+    kernel_size: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_term: false
+  }
+}
+## BN
+layers {
+  bottom: "loss1/conv"
+  name: "loss1/conv/bn"
+  top: "loss1/conv/bn"
+  type: BN
+  blobs_lr: 1
+  blobs_lr: 1
+  weight_decay: 0
+  weight_decay: 0
+  bn_param {
+    scale_filler {
+      type: "constant"
+      value: 1
+    }
+    shift_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "loss1/conv/bn"
+  top: "loss1/conv/bn"
+  name: "loss1/relu_conv"
+  type: RELU
+}
+layers {
+  bottom: "loss1/conv/bn"
+  top: "loss1/fc"
+  name: "loss1/fc"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  weight_decay: 1
+  inner_product_param {
+    num_output: 1024
+    weight_filler {
+      type: "xavier"
+    }
+    bias_term: false
+  }
+}
+## BN
+layers {
+  bottom: "loss1/fc"
+  name: "loss1/fc/bn"
+  top: "loss1/fc/bn"
+  type: BN
+  blobs_lr: 1
+  blobs_lr: 1
+  weight_decay: 0
+  weight_decay: 0
+  bn_param {
+    scale_filler {
+      type: "constant"
+      value: 1
+    }
+    shift_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "loss1/fc/bn"
+  top: "loss1/fc/bn"
+  name: "loss1/relu_fc"
+  type: RELU
+}
+layers {
+  bottom: "loss1/fc/bn"
+  top: "loss1/classifier"
+  name: "loss1/classifier"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  inner_product_param {
+    num_output: 1000
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layers {
+  bottom: "loss1/classifier"
+  bottom: "label"
+  top: "loss1/loss1"
+  name: "loss1/loss"
+  type: SOFTMAX_LOSS
+  loss_weight: 0.3
+}
+layers {
+  bottom: "loss1/classifier"
+  bottom: "label"
+  top: "loss1/top-1"
+  name: "loss1/top-1"
+  type: ACCURACY
+  include {
+    phase: TEST
+  }
+}
+layers {
+  bottom: "loss1/classifier"
+  bottom: "label"
+  top: "loss1/top-5"
+  name: "loss1/top-5"
+  type: ACCURACY
+  accuracy_param {
+    top_k: 5
+  }
+  include {
+    phase: TEST
+  }
+}
 layers {
   bottom: "inception_4a/output"
   top: "inception_4b/1x1"
@@ -2623,152 +2623,152 @@ layers {
   name: "inception_4d/output"
   type: CONCAT
 }
-#layers {
-#  bottom: "inception_4d/output"
-#  top: "loss2/ave_pool"
-#  name: "loss2/ave_pool"
-#  type: POOLING
-#  pooling_param {
-#    pool: AVE
-#    kernel_size: 5
-#    stride: 3
-#  }
-#}
-#layers {
-#  bottom: "loss2/ave_pool"
-#  top: "loss2/conv"
-#  name: "loss2/conv"
-#  type: CONVOLUTION
-#  blobs_lr: 1
-#  weight_decay: 1
-#  convolution_param {
-#    num_output: 128
-#    kernel_size: 1
-#    weight_filler {
-#      type: "xavier"
-#    }
-#    bias_term: false
-#  }
-#}
-### BN
-#layers {
-#  bottom: "loss2/conv"
-#  name: "loss2/conv/bn"
-#  top: "loss2/conv/bn"
-#  type: BN
-#  blobs_lr: 1
-#  blobs_lr: 1
-#  weight_decay: 0
-#  weight_decay: 0
-#  bn_param {
-#    scale_filler {
-#      type: "constant"
-#      value: 1
-#    }
-#    shift_filler {
-#      type: "constant"
-#      value: 0
-#    }
-#  }
-#}
-#layers {
-#  bottom: "loss2/conv/bn"
-#  top: "loss2/conv/bn"
-#  name: "loss2/relu_conv"
-#  type: RELU
-#}
-#layers {
-#  bottom: "loss2/conv/bn"
-#  top: "loss2/fc"
-#  name: "loss2/fc"
-#  type: INNER_PRODUCT
-#  blobs_lr: 1
-#  weight_decay: 1
-#  inner_product_param {
-#    num_output: 1024
-#    weight_filler {
-#      type: "xavier"
-#    }
-#    bias_term: false
-#  }
-#}
-### BN
-#layers {
-#  bottom: "loss2/fc"
-#  name: "loss2/fc/bn"
-#  top: "loss2/fc/bn"
-#  type: BN
-#  blobs_lr: 1
-#  blobs_lr: 1
-#  weight_decay: 0
-#  weight_decay: 0
-#  bn_param {
-#    scale_filler {
-#      type: "constant"
-#      value: 1
-#    }
-#    shift_filler {
-#      type: "constant"
-#      value: 0
-#    }
-#  }
-#}
-#layers {
-#  bottom: "loss2/fc/bn"
-#  top: "loss2/fc/bn"
-#  name: "loss2/relu_fc"
-#  type: RELU
-#}
-#layers {
-#  bottom: "loss2/fc/bn"
-#  top: "loss2/classifier"
-#  name: "loss2/classifier"
-#  type: INNER_PRODUCT
-#  blobs_lr: 1
-#  blobs_lr: 2
-#  weight_decay: 1
-#  weight_decay: 0
-#  inner_product_param {
-#    num_output: 1000
-#    weight_filler {
-#      type: "xavier"
-#    }
-#    bias_filler {
-#      type: "constant"
-#    }
-#  }
-#}
-#layers {
-#  bottom: "loss2/classifier"
-#  bottom: "label"
-#  top: "loss2/loss1"
-#  name: "loss2/loss"
-#  type: SOFTMAX_LOSS
-#  loss_weight: 0.3
-#}
-#layers {
-#  bottom: "loss2/classifier"
-#  bottom: "label"
-#  top: "loss2/top-1"
-#  name: "loss2/top-1"
-#  type: ACCURACY
-#  include {
-#    phase: TEST
-#  }
-#}
-#layers {
-#  bottom: "loss2/classifier"
-#  bottom: "label"
-#  top: "loss2/top-5"
-#  name: "loss2/top-5"
-#  type: ACCURACY
-#  accuracy_param {
-#    top_k: 5
-#  }
-#  include {
-#    phase: TEST
-#  }
-#}
+layers {
+  bottom: "inception_4d/output"
+  top: "loss2/ave_pool"
+  name: "loss2/ave_pool"
+  type: POOLING
+  pooling_param {
+    pool: AVE
+    kernel_size: 5
+    stride: 3
+  }
+}
+layers {
+  bottom: "loss2/ave_pool"
+  top: "loss2/conv"
+  name: "loss2/conv"
+  type: CONVOLUTION
+  blobs_lr: 1
+  weight_decay: 1
+  convolution_param {
+    num_output: 128
+    kernel_size: 1
+    weight_filler {
+      type: "xavier"
+    }
+    bias_term: false
+  }
+}
+## BN
+layers {
+  bottom: "loss2/conv"
+  name: "loss2/conv/bn"
+  top: "loss2/conv/bn"
+  type: BN
+  blobs_lr: 1
+  blobs_lr: 1
+  weight_decay: 0
+  weight_decay: 0
+  bn_param {
+    scale_filler {
+      type: "constant"
+      value: 1
+    }
+    shift_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "loss2/conv/bn"
+  top: "loss2/conv/bn"
+  name: "loss2/relu_conv"
+  type: RELU
+}
+layers {
+  bottom: "loss2/conv/bn"
+  top: "loss2/fc"
+  name: "loss2/fc"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  weight_decay: 1
+  inner_product_param {
+    num_output: 1024
+    weight_filler {
+      type: "xavier"
+    }
+    bias_term: false
+  }
+}
+## BN
+layers {
+  bottom: "loss2/fc"
+  name: "loss2/fc/bn"
+  top: "loss2/fc/bn"
+  type: BN
+  blobs_lr: 1
+  blobs_lr: 1
+  weight_decay: 0
+  weight_decay: 0
+  bn_param {
+    scale_filler {
+      type: "constant"
+      value: 1
+    }
+    shift_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+}
+layers {
+  bottom: "loss2/fc/bn"
+  top: "loss2/fc/bn"
+  name: "loss2/relu_fc"
+  type: RELU
+}
+layers {
+  bottom: "loss2/fc/bn"
+  top: "loss2/classifier"
+  name: "loss2/classifier"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  inner_product_param {
+    num_output: 1000
+    weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layers {
+  bottom: "loss2/classifier"
+  bottom: "label"
+  top: "loss2/loss1"
+  name: "loss2/loss"
+  type: SOFTMAX_LOSS
+  loss_weight: 0.3
+}
+layers {
+  bottom: "loss2/classifier"
+  bottom: "label"
+  top: "loss2/top-1"
+  name: "loss2/top-1"
+  type: ACCURACY
+  include {
+    phase: TEST
+  }
+}
+layers {
+  bottom: "loss2/classifier"
+  bottom: "label"
+  top: "loss2/top-5"
+  name: "loss2/top-5"
+  type: ACCURACY
+  accuracy_param {
+    top_k: 5
+  }
+  include {
+    phase: TEST
+  }
+}
 layers {
   bottom: "inception_4d/output"
   top: "inception_4e/3x3_reduce"
@@ -3708,7 +3708,7 @@ layers {
   top: "loss3/loss3"
   name: "loss3/loss3"
   type: SOFTMAX_LOSS
-  #loss_weight: 1
+  loss_weight: 1
 }
 layers {
   bottom: "loss3/classifier"
