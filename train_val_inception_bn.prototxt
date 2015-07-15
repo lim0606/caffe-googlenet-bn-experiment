@@ -7,7 +7,7 @@ layers {
   name: "data"
   type: DATA
   data_param {
-    source: "/media/data1/image/ilsvrc12/ilsvrc12_train_lmdb"
+    source: "/media/data0/image/ilsvrc12/ilsvrc12_train_lmdb"
     batch_size: 32
     backend: LMDB
     shuffle: true

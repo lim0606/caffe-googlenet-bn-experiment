@@ -8,7 +8,7 @@ average_loss: 40
 base_lr: 0.045
 lr_policy: "step"
 #stepsize: 320000
-stepsize: 3200
+stepsize: 12800
 gamma: 0.96
 #max_iter: 10000000
 max_iter: 2400000
@@ -16,5 +16,5 @@ momentum: 0.9
 #weight_decay: 0.0002
 weight_decay: 0.0002
 snapshot: 10000
-snapshot_prefix: "snapshots/inception_bn_solver2"
+snapshot_prefix: "snapshots/inception_bn_solver4"
 solver_mode: GPU
