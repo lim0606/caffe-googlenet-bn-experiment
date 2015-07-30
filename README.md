@@ -6,7 +6,7 @@ The network definition and solver prototxt files are modified from https://githu
 
 Notes:
 - training with random crop;
-- training without data-augmentation except random crop;
+- training without any data-augmentation except random crop;
 - uses "xavier" to initialize the weights;
 - training with real-time shuffle with a modified [data_layer.cpp](https://github.com/lim0606/caffe-dev/blob/master/src/caffe/layers/data_layer.cpp);
 - batch normalization layer is modified version of https://github.com/ChenglongChen/batch_normalization. The modified bn layer supports batch normalization for inference. (See [neuron_layers.hpp](https://github.com/lim0606/caffe-dev/blob/master/include/caffe/neuron_layers.hpp), [bn_layer.cpp](https://github.com/lim0606/caffe-dev/blob/master/src/caffe/layers/bn_layer.cpp), and [bn_layer.cu](https://github.com/lim0606/caffe-dev/blob/master/src/caffe/layers/bn_layer.cu))
